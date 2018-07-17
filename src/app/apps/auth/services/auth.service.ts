@@ -7,6 +7,7 @@ import { Account } from 'common';
 import { AuthConfig } from '../auth.config';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Router } from '@angular/router';
 
 const TOKEN = 'jwt';
 const ACCOUNT = 'account';
@@ -18,7 +19,8 @@ export class AuthService {
 
   constructor(
     @Inject('config') private config: AuthConfig,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
     if (this.token && this.account) {
       this.profile$.next(this.account);
@@ -36,7 +38,7 @@ export class AuthService {
           this.token = token;
           this.account = account;
           this.profile$.next(this.account);
-          console.log(this.account, this.token);
+          this.router.navigateByUrl(this.config.secure_path);
           resolve();
         } catch (e) {
           reject(e);
@@ -47,6 +49,11 @@ export class AuthService {
 
   public logout(): void {
     window.sessionStorage.clear();
+    this.profile$.next(this.account);
+    setTimeout(
+      this.router.navigateByUrl(this.config.secure_path),
+      1234
+    );
   }
 
   private async getToken(username: string, password: string): Promise<any> {
@@ -80,7 +87,7 @@ export class AuthService {
   }
 
   public get token(): string {
-    return window.sessionStorage.getItem(TOKEN);
+    return window.sessionStorage.getItem(TOKEN) || undefined;
   }
 
   public set account(account: Account) {
@@ -88,7 +95,7 @@ export class AuthService {
   }
 
   public get account(): Account {
-    return JSON.parse(window.sessionStorage.getItem(ACCOUNT));
+    return JSON.parse(window.sessionStorage.getItem(ACCOUNT)) || undefined;
   }
 
 }
