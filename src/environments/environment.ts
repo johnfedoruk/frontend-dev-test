@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  login_url: 'http://localhost:3000/login',
+  me_url: 'http://localhost:3000/me',
+  secure_path: '/secure'
 };
