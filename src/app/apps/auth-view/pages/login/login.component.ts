@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   trigger, state, transition, animate, keyframes, style
 } from '@angular/animations';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -54,17 +55,34 @@ import {
 })
 export class LoginComponent implements OnInit {
 
+  public username: string;
+  public password: string;
   public loginState: string;
 
-  constructor() { }
+  constructor(
+    private auth: AuthService
+  ) { }
 
   ngOnInit() {
   }
 
-  public onSubmit($event): void {
+  public async onSubmit($event): Promise<void> {
     $event.preventDefault();
-    console.log('yo');
+    try {
+      await this.auth.login(this.username, this.password);
+      this.onSuccess();
+    } catch (e) {
+      this.onError();
+    }
+  }
+
+  public onError(): void {
     this.loginState = 'error';
     setTimeout(() => this.loginState = undefined, 1000);
   }
+
+  public onSuccess(): void {
+    console.log('logged in');
+  }
+
 }
