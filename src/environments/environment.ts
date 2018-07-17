@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  login_url: 'http://localhost:3000/login',
-  me_url: 'http://localhost:3000/me',
+  login_url: 'https://dev-test-service.madebywiser.com/login',
+  me_url: 'https://dev-test-service.madebywiser.com/me',
   secure_path: '/secure'
 };
