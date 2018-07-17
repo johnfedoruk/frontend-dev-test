@@ -69,7 +69,7 @@ export class AuthService {
     return await this.http.get<string>(url, config).toPromise<string>();
   }
 
-  private async getAccount(token: string): Promise<Account> {
+  public async getAccount(token: string): Promise<Account> {
     const url: string = this.config.me_url;
     const headers: HttpHeaders = new HttpHeaders({
       'Authorization': `JWT ${token}`
