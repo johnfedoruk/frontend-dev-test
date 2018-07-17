@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { AuthService } from './services/auth.service';
 import { AuthConfig } from './auth.config';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuardService
   ],
   declarations: [
     
@@ -21,6 +23,7 @@ export class AuthModule {
       ngModule: AuthModule,
       providers: [
         AuthService,
+        AuthGuardService,
         {
           provide: 'config',
           useValue: config
