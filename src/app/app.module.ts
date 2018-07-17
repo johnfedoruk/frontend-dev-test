@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { NavbarComponent } from './partials/navbar/navbar.component';
 import { AuthModule } from './apps/auth/auth.module';
+import { AuthGuardService } from './apps/auth/services/auth-guard.service';
 
 const routes: Routes = [
     {
@@ -22,7 +23,8 @@ const routes: Routes = [
     },
     {
         path: 'secure',
-        loadChildren: './apps/secure/secure.module#SecureModule'
+        loadChildren: './apps/secure/secure.module#SecureModule',
+        canActivate: [AuthGuardService]
     },
     {
         path: 'error/:status_code',
