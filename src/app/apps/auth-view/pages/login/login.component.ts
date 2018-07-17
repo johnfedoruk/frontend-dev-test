@@ -81,8 +81,6 @@ export class LoginComponent implements OnInit {
     setTimeout(() => this.loginState = undefined, 1000);
   }
 
-  public onSuccess(): void {
-    console.log('logged in');
-  }
+  public onSuccess(): void { }
 
 }
