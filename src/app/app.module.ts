@@ -15,6 +15,10 @@ const routes: Routes = [
         component: HomeComponent
     },
     {
+        path: 'auth',
+        loadChildren: './apps/auth-view/auth-view.module#AuthViewModule'
+    },
+    {
         path: 'error/:status_code',
         component: ErrorComponent
     },
