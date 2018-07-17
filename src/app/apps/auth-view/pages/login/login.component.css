@@ -1,0 +1,14 @@
+:host {
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+.login-card {
+    text-align: left;
+    max-width: 600px;
+    min-width: 300px;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+    display: inline-block;
+}
