@@ -2,7 +2,6 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AuthService } from './services/auth.service';
-import { AuthComponent } from './auth.component';
 import { AuthConfig } from './auth.config';
 
 @NgModule({
@@ -12,7 +11,9 @@ import { AuthConfig } from './auth.config';
   providers: [
     AuthService
   ],
-  declarations: [AuthComponent]
+  declarations: [
+    
+  ]
 })
 export class AuthModule {
   static forRoot(config: AuthConfig): ModuleWithProviders {
