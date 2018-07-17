@@ -2,12 +2,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpStatusModule } from 'http-status-pipe';
-import { AuthService } from 'stub';
+import { HttpClientModule } from '@angular/common/http';
 
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { NavbarComponent } from './partials/navbar/navbar.component';
+import { AuthModule } from './apps/auth/auth.module';
 
 const routes: Routes = [
     {
@@ -39,10 +41,15 @@ const routes: Routes = [
     imports: [
         BrowserAnimationsModule,
         RouterModule.forRoot(routes),
-        HttpStatusModule
+        HttpStatusModule,
+        AuthModule.forRoot({
+            login_url: environment.login_url,
+            me_url: environment.me_url,
+            secure_path: environment.secure_path
+        }),
+        HttpClientModule
     ],
     providers: [
-        AuthService
     ],
     bootstrap: [AppComponent]
 })
