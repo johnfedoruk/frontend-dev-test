@@ -1,4 +1,4 @@
-<form class="w3-card-4 login-card">
+<form class="w3-card-4 login-card" [@loginState]='loginState' (ngSubmit)="onSubmit($event)">
 
   <header class="w3-container w3-blue">
     <h1>Login</h1>
