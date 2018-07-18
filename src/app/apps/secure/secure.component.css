@@ -10,3 +10,14 @@
     margin-top: 100px;
     display: inline-block;
 }
+@media(max-width: 500px) {
+    .w3-card {
+        margin-top: 25px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        width: 300px;
+    }
+    iframe {
+        width: 300px;
+    }
+}
