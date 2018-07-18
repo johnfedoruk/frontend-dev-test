@@ -1,8 +1,11 @@
 import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from 'stub';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { AppComponent } from './app.component';
 import { NavbarComponent } from './partials/navbar/navbar.component';
+import { AuthService } from './apps/auth/services/auth.service';
+import { AuthConfig } from './apps/auth/auth.config';
 
 describe('AppComponent', () => {
     beforeEach(async(() => {
@@ -11,11 +14,20 @@ describe('AppComponent', () => {
                 AppComponent,
                 NavbarComponent
             ],
-            imports: [
-                RouterTestingModule
-            ],
             providers: [
-                AuthService
+              AuthService,
+              {
+                provide: 'config',
+                useValue: <AuthConfig>{
+                  login_url: '',
+                  me_url: '',
+                  secure_path: '',
+                }
+              }
+            ],
+            imports: [
+              HttpClientTestingModule,
+              RouterTestingModule
             ]
         }).compileComponents();
     }));

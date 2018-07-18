@@ -2,6 +2,8 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
 import { AuthConfig } from '../auth.config';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AuthService', () => {
   beforeEach(() => {
@@ -14,8 +16,12 @@ describe('AuthService', () => {
             login_url: '',
             me_url: '',
             secure_path: '',
-          }
+          },
         }
+      ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule
       ]
     });
   });
